@@ -5,24 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/21 18:13:24 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/21 18:14:35 by aphyo-ht         ###   ########.fr       */
+/*   Created: 2026/02/22 22:40:24 by aphyo-ht          #+#    #+#             */
+/*   Updated: 2026/02/22 23:36:50 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "philo.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/time.h>
-#include <unistd.h>
-
-void	error_message(char *text, int signal)
-{
-	if (text)
-		write(2, text, ft_strlen(text) + 1);
-	exit(signal);
-}
+#include <limits.h>
 
 size_t	get_current_time(void)
 {
@@ -30,14 +19,59 @@ size_t	get_current_time(void)
 
 	if (gettimeofday(&time, NULL) == -1)
 		error_message("[gettimeofday ERROR]\n", 1);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
 }
 
-void	ft_usleep(size_t mls)
+int	ft_isdigit(char c)
 {
-	size_t	start;
+	if (c < '0' || c > '9')
+		return (0);
+	return (1);
+}
+int	ft_strlen(char *str)
+{
+	int	i;
 
-	start = get_current_time();
-	while (get_current_time() - start < mls)
-		usleep(500);
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i])
+		i++;
+	return (i);
+}
+int	ft_atoi(char *str)
+{
+	long	value;
+
+	value = 0;
+	while (*str == ' ' || (*str >= 9 && *str <= 13))
+		str++;
+	if (ft_strlen(str) > 10)
+		ft_error_exit("Parameter larger than MAX INT\n");
+	while (*str >= '0' && *str <= '9')
+	{
+		value = value * 10 + (*str - '0');
+		str++;
+	}
+	if (value > INT_MAX)
+		ft_error_exit("Parameter larger than MAX INT\n");
+	return (value);
+}
+
+void	ft_parse_table(t_table *table, char **argv)
+{
+	table->n_meals = ft_atoi(argv[1]);
+	table->t_die = ft_atoi(argv[2]);
+	table->t_eat = ft_atoi(argv[3]);
+	table->t_sleep = ft_atoi(argv[4]);
+	table->n_meals = -1;
+	if (argv[5])
+		table->n_meals = ft_atoi(argv[5]);
+}
+
+void	ft_error_exit(char *str)
+{
+	if (write(2, str, ft_strlen(str)) == -1)
+		ft_error_exit("Error while printing error\n");
+	exit(EXIT_FAILURE);
 }
