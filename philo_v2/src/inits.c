@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 23:03:28 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/22 23:46:02 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/02/23 06:09:49 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	init_table(t_table *table)
 {
+	table->ready = 0;
 	if (pthread_mutex_init(&table->write_mutex, NULL) != 0)
 		ft_error_exit("Error whiel creating write mutex\n");
 	if (pthread_mutex_init(&table->meal_mutex, NULL) != 0)
@@ -58,6 +59,7 @@ void	init_philos(t_table *table)
 			table->philos[i].mutexes.left_fork = &table->forks[i - 1];
 		table->philos[i].mutexes.write_mutex = &table->write_mutex;
 		table->philos[i].mutexes.meal_mutex = &table->meal_mutex;
+		table->philos[i].table = table;
 		i++;
 	}
 }
@@ -67,6 +69,6 @@ void	init_threads(t_table *table)
 	int			i;
 
 	i = 0;
-	if(pthread_create(&observer, ))
+	if(pthread_create(&observer_id, NULL, NULL,  ))
 
 }

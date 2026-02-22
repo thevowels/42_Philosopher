@@ -1,35 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   threads.c                                          :+:      :+:    :+:   */
+/*   thread_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/02/22 23:49:45 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/22 23:52:20 by aphyo-ht         ###   ########.fr       */
+/*   Created: 2026/02/22 23:52:54 by aphyo-ht          #+#    #+#             */
+/*   Updated: 2026/02/23 06:14:32 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void *observer_routine(void *ptr)
+void	ft_wait_to_start(t_table *table)
 {
-	t_philo *philos;
-
-	philos = (t_philo *)philos;
-
 	while(1)
 	{
-
+		pthread_mutex_lock(&table->ready_mutex);
+		if(table->ready == 1)
+		{
+			pthread_mutex_unlock(&table->ready_mutex);
+			break;
+		}
+		pthread_mutex_unlock(&table->ready_mutex);
+		usleep(100);
 	}
+
 }
 
-void *philo_routine(void *ptr)
-{
-	t_philo *philo;
+void	ft_sleep(size_t mls)
+{ 
+	size_t	start;
 
-	philo = (t_philo *)ptr;
-	
-	if(philo->id %2)
-	
+	start = get_current_time();
+	while (get_current_time() - start < mls)
+		usleep(100);
 }

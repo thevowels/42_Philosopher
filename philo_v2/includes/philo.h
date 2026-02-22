@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 05:28:48 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/22 23:36:08 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/02/23 06:15:14 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_philo
 	int					meals_eaten;
 	size_t				last_meal;
 	size_t				born_time;
+	t_table				*table;
 }						t_philo;
 
 typedef struct s_table
@@ -50,6 +51,8 @@ typedef struct s_table
 	size_t				t_sleep;
 	int					n_philos;
 	int					n_meals;
+	int					ready;
+	pthread_mutex_t		ready_mutex;
 	pthread_mutex_t		meal_mutex;
 	pthread_mutex_t		write_mutex;
 }						t_table;
@@ -63,6 +66,7 @@ int						ft_isdigit(char c);
 int						ft_strlen(char *str);
 int						ft_atoi(char *str);
 void					ft_error_exit(char *str);
+void					ft_parse_table(t_table *table, char **argv);
 
 // init.c
 void					init_table(t_table *table);
@@ -72,4 +76,8 @@ void					init_philos(t_table *table);
 // clean.c
 void					ft_destroy_forks(t_table *table, int last_fork);
 void					ft_destroy_table(t_table *table);
+
+// thread_utils.c
+void					ft_wait_to_start(t_table *table);
+void					ft_sleep(size_t mls);
 #endif
