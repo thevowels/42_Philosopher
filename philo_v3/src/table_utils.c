@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 22:33:54 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 03:18:06 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/02/24 04:41:28 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_wait_until_ready(t_table *table)
 	{
 		pthread_mutex_lock(&table->ready_mutex);
 		pthread_mutex_lock(&table->alive_mutex);
-		if (table->is_ready || !table->is_alive)
+		if (table->is_ready)
 		{
 			pthread_mutex_unlock(&table->ready_mutex);
 			pthread_mutex_unlock(&table->alive_mutex);
@@ -26,10 +26,16 @@ void	ft_wait_until_ready(t_table *table)
 		}
 		pthread_mutex_unlock(&table->ready_mutex);
 		pthread_mutex_unlock(&table->alive_mutex);
-		usleep(300);
+		usleep(100);
 	}
 }
 
+void	ft_ready(t_table *table)
+{
+	pthread_mutex_lock(&table->ready_mutex);
+	table->is_ready = 1;
+	pthread_mutex_unlock(&table->ready_mutex);
+}
 void	ft_set_alive(t_table *table, int i)
 {
 	pthread_mutex_lock(&table->alive_mutex);

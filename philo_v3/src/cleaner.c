@@ -6,12 +6,18 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 01:00:58 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 03:22:43 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/02/24 04:53:12 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void	clean_exit(t_table *table)
+{
+	ft_destroy_philo_mutexes(table, table->n_philos);
+	ft_destroy_forks(table, table->n_philos);
+	ft_destroy_table_mutexes(table);
+}
 void	philo_cleanup(t_table *table, int i)
 {
 	ft_destroy_philo_mutexes(table, i);

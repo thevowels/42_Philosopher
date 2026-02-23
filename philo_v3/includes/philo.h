@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 05:28:48 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 03:00:17 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/02/24 04:53:25 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ int						ft_get_alive(t_table *table);
 void					ft_add_eaten_philos(t_table *table);
 int						ft_get_eaten_philos(t_table *table);
 void					ft_wait_until_ready(t_table *table);
+void					ft_ready(t_table *table);
 // validations.c
 void					ft_validate(int argc, char **argv);
 
@@ -110,7 +111,7 @@ void					philo_cleanup(t_table *table, int i);
 void					ft_destroy_table_mutexes(t_table *table);
 void					ft_destroy_forks(t_table *table, int last_fork);
 void					ft_destroy_philo_mutexes(t_table *table, int count);
-
+void					clean_exit(t_table *table);
 // parser.c
 void					ft_validate(int argc, char **argv);
 void					ft_parse(t_table *table, char **argv);
