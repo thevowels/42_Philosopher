@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 22:33:36 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 03:05:29 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/02/24 03:22:23 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ int	main(int argc, char **argv)
 	init_philos(&table);
 	table.start_time = ft_time_ms();
 	ft_start_dining(&table);
+	printf("Before cleanup\n");
 	philo_cleanup(&table,table.n_philos);
 
 }

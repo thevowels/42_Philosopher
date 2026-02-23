@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 01:00:58 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 02:29:26 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/02/24 03:22:43 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void ft_destroy_philo_mutexes(t_table *table, int count)
 	{
 		pthread_mutex_destroy(&table->philos[i].philo_alive_mutex);
 		pthread_mutex_destroy(&table->philos[i].meal_mutex);
+		i++;
 	}
 }
 

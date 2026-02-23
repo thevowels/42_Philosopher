@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 01:00:12 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 02:25:43 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/02/24 03:08:32 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,6 @@ void	init_philos(t_table *table)
 			philo_cleanup(table, i);
 		}
 		philo->last_meal = ft_time_ms();
+		i++;
 	}
 }

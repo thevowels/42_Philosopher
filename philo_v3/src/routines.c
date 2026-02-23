@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 23:49:20 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 03:02:07 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/02/24 03:22:07 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	*philo_routine(void *ptr)
 
 	philo = (t_philo *)ptr;
 	ft_wait_until_ready(philo->table);
+	printf("philo rotuine ready for %d\n", philo->id);
 	if (philo->id % 2 == 0)
 		ft_sleep_ms(2);
 	// pthread_mutex_lock(&philo->meal_mutex);
@@ -31,6 +32,7 @@ void	*philo_routine(void *ptr)
 		ft_sleep(philo);
 		ft_think(philo);
 	}
+	printf("Philo routine finish for %d\n", philo->id);
 	return (NULL);
 }
 
@@ -39,12 +41,15 @@ int	ft_is_philo_alive(t_philo *philo)
 	size_t	last_meal;
 	size_t	current_time;
 
+	// printf("philo alive start\n");
 	current_time = ft_time_ms();
 	pthread_mutex_lock(&philo->meal_mutex);
 	last_meal = philo->last_meal;
 	pthread_mutex_unlock(&philo->meal_mutex);
+	// printf("philo alive end\n");
 	if ((current_time - last_meal) >= philo->table->t_die)
 		return (0);
+	// printf("return 1\n");
 	return (1);
 }
 
@@ -52,14 +57,16 @@ void	*monitor_routine(void *ptr)
 {
 	t_table	*table;
 	int		i;
-
+	// printf("Monitor started\n");
 	table = (t_table *)ptr;
 	while (ft_get_alive(table))
 	{
+		// printf("Monitor started\n");
 		i = 0;
 		while (i < table->n_philos)
 		{
-			if (ft_is_philo_alive(&table->philos[i]))
+			// printf("hello %d\n", i);
+			if (!ft_is_philo_alive(&table->philos[i]))
 			{
 				ft_set_alive(table, 0);
 				ft_print_die(&table->philos[i]);
@@ -104,11 +111,14 @@ void	ft_start_dining(t_table *table)
 	i = 0;
 	if (pthread_create(&monitor, NULL, &monitor_routine, (void *)table) != 0)
 		philo_cleanup(table, table->n_philos);
+	printf("Before starting philo threads\n");
 	threads = 	start_philo_threads(table);
+	printf("Started %d threads\n", threads);
 	while(i < threads)
 	{
 		pthread_join(table->philos[i].tid, NULL);
 		i++;
 	}
 	pthread_join(monitor, NULL);
+	printf("Threads finish\n");
 }
