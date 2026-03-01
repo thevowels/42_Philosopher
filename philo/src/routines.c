@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 23:49:20 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/03/02 06:24:21 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:58:22 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ void	ft_start_dining(t_table *table)
 	i = 0;
 	if (pthread_create(&monitor, NULL, &monitor_routine, (void *)table) != 0)
 		philo_cleanup(table, table->n_philos);
-	threads = start_philo_threads(table);
 	table->start_time = ft_time_ms();
+	threads = start_philo_threads(table);
 	ft_ready(table);
 	while (i < threads)
 	{
