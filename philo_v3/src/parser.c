@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 22:37:34 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 02:57:20 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/02 05:53:16 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,6 @@ void	ft_parse(t_table *table, char **argv)
 	table->max_meals = -1;
 	if (argv[5])
 		table->max_meals = ft_atoi(argv[5]);
+	if(table->max_meals == 0)
+		exit(EXIT_SUCCESS);
 }
