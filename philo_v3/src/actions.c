@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 22:45:00 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 05:11:47 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/02/24 05:35:35 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	lock_forks(t_philo *philo)
 		ft_print_action(philo, "has taken a fork");
 		ft_set_alive(philo->table, 0);
 		pthread_mutex_unlock(philo->left_fork);
+		exit(EXIT_SUCCESS);
 	}
 	else if (philo->left_fork < philo->right_fork)
 	{
