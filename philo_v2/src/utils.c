@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 22:40:24 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/23 06:14:35 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/02/23 23:12:29 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_atoi(char *str)
 
 void	ft_parse_table(t_table *table, char **argv)
 {
-	table->n_meals = ft_atoi(argv[1]);
+	table->n_philos = ft_atoi(argv[1]);
 	table->t_die = ft_atoi(argv[2]);
 	table->t_eat = ft_atoi(argv[3]);
 	table->t_sleep = ft_atoi(argv[4]);
