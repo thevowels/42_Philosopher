@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 22:37:34 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/03/02 05:53:16 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:21:41 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void	ft_validate(int argc, char **argv)
 	if (ft_atoi(argv[2]) * ft_atoi(argv[3]) * ft_atoi(argv[4]) == 0)
 		ft_error_exit("Durations cannot be zero\n");
 }
+
 // initialize the values and parse the requirements from argument.
+
 void	ft_parse(t_table *table, char **argv)
 {
 	table->is_ready = 0;
@@ -57,6 +59,6 @@ void	ft_parse(t_table *table, char **argv)
 	table->max_meals = -1;
 	if (argv[5])
 		table->max_meals = ft_atoi(argv[5]);
-	if(table->max_meals == 0)
+	if (table->max_meals == 0)
 		exit(EXIT_SUCCESS);
 }

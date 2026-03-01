@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 01:00:58 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 04:53:12 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:20:44 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	clean_exit(t_table *table)
 	ft_destroy_forks(table, table->n_philos);
 	ft_destroy_table_mutexes(table);
 }
+
 void	philo_cleanup(t_table *table, int i)
 {
 	ft_destroy_philo_mutexes(table, i);
@@ -26,12 +27,12 @@ void	philo_cleanup(t_table *table, int i)
 	ft_error_exit("Error while creating philo alive mutex.\n");
 }
 
-void ft_destroy_philo_mutexes(t_table *table, int count)
+void	ft_destroy_philo_mutexes(t_table *table, int count)
 {
-	int i; 
+	int	i;
 
 	i = 0;
-	while(i < count)
+	while (i < count)
 	{
 		pthread_mutex_destroy(&table->philos[i].philo_alive_mutex);
 		pthread_mutex_destroy(&table->philos[i].meal_mutex);
@@ -49,8 +50,10 @@ void	ft_destroy_table_mutexes(t_table *table)
 
 void	ft_destroy_forks(t_table *table, int last_fork)
 {
-	int i = 0;
-	while(i < last_fork)
+	int	i;
+
+	i = 0;
+	while (i < last_fork)
 	{
 		pthread_mutex_destroy(&table->forks[i]);
 		i++;

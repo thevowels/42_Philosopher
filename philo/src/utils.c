@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 22:45:39 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 05:35:10 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:27:58 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,4 @@ int	ft_atoi(char *str)
 	if (value > INT_MAX)
 		ft_error_exit("Parameter larger than MAX INT\n");
 	return (value);
-}
-void	ft_error_exit(char *str)
-{
-	if (write(2, str, ft_strlen(str)) == -1)
-		ft_error_exit("Error while printing error\n");
-	exit(EXIT_FAILURE);
 }

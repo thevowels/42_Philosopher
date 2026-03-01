@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/24 01:00:12 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 03:08:32 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:21:12 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ static void	set_fork(t_philo *philo, int i)
 	else
 		philo->right_fork = &philo->table->forks[i - 1];
 }
+
 void	init_philos(t_table *table)
 {
 	int		i;

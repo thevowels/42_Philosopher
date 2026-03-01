@@ -6,29 +6,11 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 22:33:54 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 04:41:28 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:26:46 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	ft_wait_until_ready(t_table *table)
-{
-	while (1)
-	{
-		pthread_mutex_lock(&table->ready_mutex);
-		pthread_mutex_lock(&table->alive_mutex);
-		if (table->is_ready)
-		{
-			pthread_mutex_unlock(&table->ready_mutex);
-			pthread_mutex_unlock(&table->alive_mutex);
-			break ;
-		}
-		pthread_mutex_unlock(&table->ready_mutex);
-		pthread_mutex_unlock(&table->alive_mutex);
-		usleep(100);
-	}
-}
 
 void	ft_ready(t_table *table)
 {
@@ -36,6 +18,7 @@ void	ft_ready(t_table *table)
 	table->is_ready = 1;
 	pthread_mutex_unlock(&table->ready_mutex);
 }
+
 void	ft_set_alive(t_table *table, int i)
 {
 	pthread_mutex_lock(&table->alive_mutex);
@@ -62,7 +45,8 @@ void	ft_add_eaten_philos(t_table *table)
 
 int	ft_get_eaten_philos(t_table *table)
 {
-	int eaten_philos;
+	int	eaten_philos;
+
 	pthread_mutex_lock(&table->eaten_philos_mutex);
 	eaten_philos = table->eaten_philos;
 	pthread_mutex_unlock(&table->eaten_philos_mutex);

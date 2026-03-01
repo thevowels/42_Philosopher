@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/10 05:28:48 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 04:53:25 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:30:57 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ void					ft_validate(int argc, char **argv);
 // actions.c
 void					ft_print_action(t_philo *philo, char *str);
 void					ft_print_die(t_philo *philo);
+void					lock_forks(t_philo *philo);
 
 // cleaner.c
 void					philo_cleanup(t_table *table, int i);

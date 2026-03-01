@@ -6,7 +6,7 @@
 #    By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/10 06:39:13 by aphyo-ht          #+#    #+#              #
-#    Updated: 2026/02/24 03:07:11 by aphyo-ht         ###   ########.fr        #
+#    Updated: 2026/03/02 06:29:24 by aphyo-ht         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ HEADER_FILES	= includes/philo.h
 
 SRC_DIR			= src/
 SRC_FILES		= actions.c cleaner.c inits.c parser.c philo.c \
-					routines.c table_utils.c utils.c
+					routines.c table_utils.c utils.c extra.c
 SRCS			= $(addprefix $(SRC_DIR), $(SRC_FILES))
 
 OBJ_DIR			= obj/

@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 23:49:20 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/02/24 05:16:47 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/02 06:24:21 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	*monitor_routine(void *ptr)
 {
 	t_table	*table;
 	int		i;
+
 	table = (t_table *)ptr;
 	while (ft_get_alive(table))
 	{
@@ -82,29 +83,27 @@ int	start_philo_threads(t_table *table)
 		if (pthread_create(&table->philos[i].tid, NULL, &philo_routine,
 				&table->philos[i]) != 0)
 		{
-			ft_set_alive(table,0);
-			break;
+			ft_set_alive(table, 0);
+			break ;
 		}
 		i++;
 	}
 	return (i);
 }
 
-
 void	ft_start_dining(t_table *table)
 {
-	pthread_t monitor;
-	int		threads;
-	int		i;
+	pthread_t	monitor;
+	int			threads;
+	int			i;
 
 	i = 0;
 	if (pthread_create(&monitor, NULL, &monitor_routine, (void *)table) != 0)
 		philo_cleanup(table, table->n_philos);
-	threads = 	start_philo_threads(table);
+	threads = start_philo_threads(table);
 	table->start_time = ft_time_ms();
 	ft_ready(table);
-	// printf("Started %d threads\n", threads);
-	while(i < threads)
+	while (i < threads)
 	{
 		pthread_join(table->philos[i].tid, NULL);
 		i++;
