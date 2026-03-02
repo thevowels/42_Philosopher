@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 22:37:34 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/03/02 06:21:41 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/02 11:56:09 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,11 @@ void	ft_validate(int argc, char **argv)
 }
 
 // initialize the values and parse the requirements from argument.
-
+static void ft_limit(t_table *table)
+{
+	if(table->t_eat < 60 ||table->t_sleep < 60)
+		ft_error_exit("Check durations.\n");
+}
 void	ft_parse(t_table *table, char **argv)
 {
 	table->is_ready = 0;
@@ -56,6 +60,7 @@ void	ft_parse(t_table *table, char **argv)
 	table->t_die = ft_atoi(argv[2]);
 	table->t_eat = ft_atoi(argv[3]);
 	table->t_sleep = ft_atoi(argv[4]);
+	ft_limit(table);
 	table->max_meals = -1;
 	if (argv[5])
 		table->max_meals = ft_atoi(argv[5]);

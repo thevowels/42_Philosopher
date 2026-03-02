@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 23:49:20 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/03/02 06:58:22 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/02 12:01:40 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,23 @@ void	*philo_routine(void *ptr)
 
 	philo = (t_philo *)ptr;
 	ft_wait_until_ready(philo->table);
-	if (philo->id % 2 == 0)
+	if (philo->table->n_philos % 2 == 0 && philo->id % 2 == 0)
 		usleep(300);
 	while (ft_get_alive(philo->table))
 	{
+		if ((philo->table->n_philos % 2 == 1) && philo->id % 3 == 2
+			&& (ft_time_ms() - philo->last_meal < philo->table->t_eat))
+			ft_sleep_ms(philo->table->t_eat * 0.5);
+		else if ((philo->table->n_philos % 2 == 1) && philo->id % 3 == 0
+			&& (ft_time_ms() - philo->last_meal < 2 * philo->table->t_eat))
+			ft_sleep_ms(philo->table->t_eat * 1.5);
 		ft_eat(philo);
 		if (philo->meals_eaten == philo->table->max_meals)
 			break ;
 		ft_sleep(philo);
 		ft_think(philo);
+		if (philo->table->n_philos % 2 == 1)
+			ft_sleep_ms(philo->table->t_eat);
 	}
 	return (NULL);
 }

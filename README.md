@@ -132,3 +132,6 @@ void	ft_wait_until_ready(t_table *table)
 
 **In this project:**
 Race conditions are prevented by protecting every shared resource with mutex locks. Before a philosopher can pick up a fork or modify shared data, they must first acquire the corresponding mutex lock, ensuring exclusive access to prevent data corruption and undefined behavior.
+
+## AI Usage
+	The Readme is mostly done by the AI, where I feed in the detail description of How I want the explanation to be. 
