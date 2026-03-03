@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 23:49:20 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/03/02 12:01:40 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/03 20:40:22 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*philo_routine(void *ptr)
 	philo = (t_philo *)ptr;
 	ft_wait_until_ready(philo->table);
 	if (philo->table->n_philos % 2 == 0 && philo->id % 2 == 0)
-		usleep(300);
+		ft_sleep_ms(philo->table->t_eat * 0.5);
 	while (ft_get_alive(philo->table))
 	{
 		if ((philo->table->n_philos % 2 == 1) && philo->id % 3 == 2
@@ -76,7 +76,7 @@ void	*monitor_routine(void *ptr)
 		{
 			ft_set_alive(table, 0);
 		}
-		usleep(100);
+		usleep(500);
 	}
 	return (NULL);
 }
@@ -108,8 +108,8 @@ void	ft_start_dining(t_table *table)
 	i = 0;
 	if (pthread_create(&monitor, NULL, &monitor_routine, (void *)table) != 0)
 		philo_cleanup(table, table->n_philos);
-	table->start_time = ft_time_ms();
 	threads = start_philo_threads(table);
+	table->start_time = ft_time_ms();
 	ft_ready(table);
 	while (i < threads)
 	{

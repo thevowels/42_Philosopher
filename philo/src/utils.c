@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 22:45:39 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/03/02 06:27:58 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/03 20:36:01 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_sleep_ms(size_t ms)
 
 	start_time = ft_time_ms();
 	while (ft_time_ms() < start_time + ms)
-		usleep(100);
+		usleep(200);
 }
 
 int	ft_isdigit(char c)
