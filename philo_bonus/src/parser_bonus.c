@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/22 22:37:34 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/03/03 22:51:51 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/04 02:12:58 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ static void ft_limit(t_table *table)
 }
 void	ft_parse(t_table *table, char **argv)
 {
-	table->is_alive = 1;
-	table->eaten_philos = 0;
 	table->n_philos = ft_atoi(argv[1]);
 	table->t_die = ft_atoi(argv[2]);
 	table->t_eat = ft_atoi(argv[3]);

@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 20:14:24 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/03/03 22:54:08 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/04 02:13:16 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define SEM_WRITE "/vowels_philo_write"
 # define SEM_IS_ALIVE "/vowels_philo_is_alive"
 # define SEM_IS_READY "/vowels_philo_is_ready"
-
+# define SEM_EATEN_PHILOS "/vowels_philo_eaten_philos"
 typedef struct s_table	t_table;
 
 typedef struct s_philo
@@ -38,6 +38,8 @@ typedef struct s_philo
 
 typedef struct s_table
 {
+	size_t				start_time;
+
 	// Readonly informations about table
 	int					n_philos;
 	int					max_meals;
@@ -51,11 +53,9 @@ typedef struct s_table
 	sem_t				*sem_write;
 	sem_t				*sem_is_alive;
 	sem_t				*sem_is_ready;
+	sem_t				*sem_eaten_philos;
 
 	//need to lock with sem
-	int					is_alive;
-	int					eaten_philos;
-
 	pid_t				*childs;
 }						t_table;
 
@@ -76,6 +76,6 @@ int		ft_atoi(char *str);
 
 // utils_extra_bonus
 void	ft_error_exit(char *str);
-
+void	ft_sleep_ms_from(size_t ms, size_t start_time);
 
 #endif

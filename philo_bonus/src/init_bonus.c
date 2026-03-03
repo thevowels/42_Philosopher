@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 22:17:36 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/03/03 23:25:47 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/04 02:19:10 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ void	ft_init_semaphores(t_table *table)
 	// 	ft_error_exit("Error while opening semaphores.\n");
 	table->sem_write = sem_open(SEM_WRITE, O_CREAT | O_EXCL, 0600, 1);
 	table->sem_is_ready = sem_open(SEM_IS_READY, O_CREAT | O_EXCL, 0600, 0);
-
+	table->sem_eaten_philos = sem_open(SEM_EATEN_PHILOS, O_CREAT | O_EXCL, 0600 , 0);
+	
 	ft_validate_semaphores(table);
 }
 
@@ -71,5 +72,6 @@ void	ft_init_philos(t_table *table)
 		table->philos[i].id = i + 1;
 		table->philos[i].table = table;
 		table->philos[i].meals_eaten = 0;
+		
 	}
 }
