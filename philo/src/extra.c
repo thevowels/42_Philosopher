@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 06:25:52 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/03/02 06:30:31 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/03/09 08:38:50 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,15 @@ void	lock_forks(t_philo *philo)
 	else if (philo->left_fork < philo->right_fork)
 	{
 		pthread_mutex_lock(philo->right_fork);
-		ft_print_action(philo, "has take a fork");
+		ft_print_action(philo, "has taken a fork");
 		pthread_mutex_lock(philo->left_fork);
-		ft_print_action(philo, "has take a fork");
+		ft_print_action(philo, "has taken a fork");
 	}
 	else
 	{
 		pthread_mutex_lock(philo->left_fork);
-		ft_print_action(philo, "has take a fork");
+		ft_print_action(philo, "has taken an fork");
 		pthread_mutex_lock(philo->right_fork);
-		ft_print_action(philo, "has take a fork");
+		ft_print_action(philo, "has taken an fork");
 	}
 }

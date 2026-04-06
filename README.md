@@ -1,4 +1,4 @@
-*This project has been created as partof the 42 curriculum by aphyo-ht.*
+*This project has been created as part of the 42 curriculum by aphyo-ht.*
 
 # Philosophers
 
@@ -51,39 +51,10 @@ timestamp_in_ms X is thinking
 timestamp_in_ms X died
 ```
 
-##  BONUS
-
-### Description
-
-The bonus part involves solving the same problem using processes and semaphores instead of threads and mutexes. Each philosopher is represented by a process, and synchronization is achieved through semaphores. This approach demonstrates inter-process communication and semaphore-based synchronization.
-
-Key differences from mandatory:
-- Use processes instead of threads
-- Use semaphores instead of mutexes for fork management
-- Implement proper process communication
-- Handle process creation and cleanup
-- Ensure proper semaphore initialization and destruction
-
-### Instructions
-
-**Implementation Requirements:**
-- Use fork() system call to create child processes
-- Use semaphores (sem_open, sem_wait, sem_post, sem_close, sem_unlink)
-- Each philosopher runs in its own process
-- Use named semaphores for inter-process synchronization
-- Implement proper process synchronization
-- Handle zombie processes appropriately
-- Clean up all semaphores and processes on exit
-
-**Additional Considerations:**
-- Process communication through shared memory or signals
-- Proper error handling for process creation
-- Semaphore naming conventions to avoid conflicts
-- Signal handling for graceful termination
-- Memory management across process boundaries
 
 ## Resources
-[Unix Threads in C - Code Valut](https://www.youtube.com/playlist?list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2)
+[Unix Threads in C - Code Valut](https://www.youtube.com/playlist?list=PLfqABt5AS4FmuQf70psXrsMLEDQXNkLq2)<br>
+[Pthread Manual](https://man7.org/linux/man-pages/man7/pthreads.7.html)
 
 ### Race Conditions
 
@@ -125,13 +96,6 @@ void	ft_wait_until_ready(t_table *table)
 
 ```
 
-**Prevention with mutex locks:**
-- **Fork mutexes**: Each fork has its own mutex - philosophers must acquire the mutex before picking up a fork
-- **Data protection mutexes**: Shared variables like `meals_eaten`, `last_meal`, and `is_alive` are protected by individual mutexes
-- **Critical sections**: Use `pthread_mutex_lock()` before accessing shared data and `pthread_mutex_unlock()` after
-
-**In this project:**
-Race conditions are prevented by protecting every shared resource with mutex locks. Before a philosopher can pick up a fork or modify shared data, they must first acquire the corresponding mutex lock, ensuring exclusive access to prevent data corruption and undefined behavior.
-
 ## AI Usage
-	The Readme is mostly done by the AI, where I feed in the detail description of How I want the explanation to be. 
+	The Readme is mostly done by the AI, where I feed in the detail description of How I want the explanation to be.
+	It also helped me alot on understanding about the error output from the valgrind tools and to get the proper tags for the valgrind.

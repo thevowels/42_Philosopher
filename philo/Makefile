@@ -6,13 +6,13 @@
 #    By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/02/10 06:39:13 by aphyo-ht          #+#    #+#              #
-#    Updated: 2026/03/02 06:29:24 by aphyo-ht         ###   ########.fr        #
+#    Updated: 2026/04/02 15:34:57 by aphyo-ht         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			= philo
 CC				= cc
-CFLAGS			= -Wall -Wextra -Werror -pthread -g
+CFLAGS			= -Wall -Wextra -Werror -pthread
 
 INCLUDES_DIR	= includes
 HEADER_FILES	= includes/philo.h
