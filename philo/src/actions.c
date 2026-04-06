@@ -6,15 +6,16 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 22:45:00 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/03/02 06:28:21 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/04/06 18:58:58 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_eat(t_philo *philo)
+int	ft_eat(t_philo *philo)
 {
-	lock_forks(philo);
+	if (lock_forks(philo) == -1)
+		return (-1);
 	pthread_mutex_lock(&philo->meal_mutex);
 	philo->last_meal = ft_time_ms();
 	ft_print_action(philo, "is eating");
@@ -26,6 +27,7 @@ void	ft_eat(t_philo *philo)
 		ft_add_eaten_philos(philo->table);
 	pthread_mutex_unlock(philo->left_fork);
 	pthread_mutex_unlock(philo->right_fork);
+	return (0);
 }
 
 void	ft_sleep(t_philo *philo)

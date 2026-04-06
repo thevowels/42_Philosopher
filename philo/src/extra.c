@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/02 06:25:52 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/03/09 08:38:50 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/04/06 18:59:06 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,22 +40,21 @@ void	ft_error_exit(char *str)
 }
 
 // from actions.c
-void	lock_forks(t_philo *philo)
+int	lock_forks(t_philo *philo)
 {
-	if (philo->left_fork == philo->right_fork)
-	{
-		pthread_mutex_lock(philo->left_fork);
-		ft_print_action(philo, "has taken a fork");
-		ft_set_alive(philo->table, 0);
-		pthread_mutex_unlock(philo->left_fork);
-		exit(EXIT_SUCCESS);
-	}
-	else if (philo->left_fork < philo->right_fork)
+	if (philo->left_fork <= philo->right_fork)
 	{
 		pthread_mutex_lock(philo->right_fork);
 		ft_print_action(philo, "has taken a fork");
+		if (philo->left_fork == philo->right_fork)
+		{
+			ft_sleep_ms(philo->table->t_die + 42);
+			pthread_mutex_unlock(philo->right_fork);
+			return (-1);
+		}
 		pthread_mutex_lock(philo->left_fork);
 		ft_print_action(philo, "has taken a fork");
+		return (0);
 	}
 	else
 	{
@@ -63,5 +62,6 @@ void	lock_forks(t_philo *philo)
 		ft_print_action(philo, "has taken an fork");
 		pthread_mutex_lock(philo->right_fork);
 		ft_print_action(philo, "has taken an fork");
+		return (0);
 	}
 }

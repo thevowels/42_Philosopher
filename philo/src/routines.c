@@ -6,7 +6,7 @@
 /*   By: aphyo-ht <aphyo-ht@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/23 23:49:20 by aphyo-ht          #+#    #+#             */
-/*   Updated: 2026/03/09 09:14:34 by aphyo-ht         ###   ########.fr       */
+/*   Updated: 2026/04/06 20:15:31 by aphyo-ht         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ void	*philo_routine(void *ptr)
 		else if ((philo->table->n_philos % 2 == 1) && philo->id % 3 == 0
 			&& (ft_time_ms() - philo->last_meal < 2 * philo->table->t_eat))
 			ft_sleep_ms(philo->table->t_eat * 1.5);
-		ft_eat(philo);
+		if (ft_eat(philo) == -1)
+			break ;
 		if (philo->meals_eaten == philo->table->max_meals)
 			break ;
 		ft_sleep(philo);
@@ -43,11 +44,15 @@ int	ft_is_philo_alive(t_philo *philo)
 {
 	size_t	last_meal;
 	size_t	current_time;
+	int		meals_eaten;
 
 	current_time = ft_time_ms();
 	pthread_mutex_lock(&philo->meal_mutex);
 	last_meal = philo->last_meal;
+	meals_eaten = philo->meals_eaten;
 	pthread_mutex_unlock(&philo->meal_mutex);
+	if (meals_eaten == philo->table->max_meals)
+		return (1);
 	if ((current_time - last_meal) >= philo->table->t_die)
 		return (0);
 	return (1);
